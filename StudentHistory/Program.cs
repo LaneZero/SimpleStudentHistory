@@ -1,6 +1,8 @@
 ﻿
-List<string> students= new List<string>();
-List<int> studentsScore=new List<int>();
+using System.ComponentModel;
+
+List<string> students = new List<string>();
+List<int> studentsScore = new List<int>();
 
 bool isExit = false;
 int operationID = 0;
@@ -30,10 +32,10 @@ while (!isExit)
             showAvrageScoreAllStudents();
             break;
         case 4:
-            Console.WriteLine("4");
+            showStudentScoreWithID();
             break;
         case 5:
-            Console.WriteLine("5");
+            isExit = true;
             break;
         default:
             Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -41,7 +43,47 @@ while (!isExit)
             Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
             Console.ReadLine();
             break;
-    
+
+    }
+
+
+}
+
+void showStudentScoreWithID()
+{
+    if (students.Count < 1)
+    {
+        Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
+        Console.WriteLine("list is empty press any key back to menu...");
+        Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
+        Console.ReadLine();
+        return;
+    }
+    int studentIndex = 0;
+    Console.WriteLine($"You have {students.Count} Studnets in list");
+    Console.WriteLine("-------------------------");
+    for (int i = 0; i < students.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}:StudentName:{students[i]}.");
+    }
+    Console.WriteLine("-------------------------");
+    Console.WriteLine("");
+    while (studentIndex != -1)
+    {
+        Console.WriteLine("Plase Enter Student ID (-1 for exit)");
+        if (!int.TryParse(Console.ReadLine(), out studentIndex))
+        {
+            Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
+            Console.WriteLine("invalid input press any key for try again...");
+            Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
+            Console.ReadLine();
+            continue;
+        }
+
+        else if (studentIndex -1 <= students.Count -1 && studentIndex > 0)
+            Console.WriteLine($"StudentName:{students[studentIndex - 1]} || Score:{studentsScore[studentIndex - 1]}.");
+
+
     }
 
 
@@ -66,7 +108,7 @@ void showAvrageScoreAllStudents()
         sumScore += studentsScore[i];
     }
 
-    avrageScore=(sumScore/studentsScore.Count);
+    avrageScore = (sumScore / studentsScore.Count);
 
     Console.WriteLine("----------------------------");
     Console.Write($"The Avrage Score is:{avrageScore}\n");
@@ -77,7 +119,7 @@ void showAvrageScoreAllStudents()
 
 void addStudentsInfo()
 {
-    int studentsCounter = 0 , counter=1;
+    int studentsCounter = 0, counter = 1;
     bool isValidCounter = false;
     string? name;
     int score;
@@ -96,8 +138,8 @@ void addStudentsInfo()
         isValidCounter = true;
     }
 
-   // students = new List<string>(studentsCounter);
-   // studentsScore = new List<int>(studentsCounter);
+    // students = new List<string>(studentsCounter);
+    // studentsScore = new List<int>(studentsCounter);
 
     while (studentsCounter > 0)
     {
@@ -138,9 +180,9 @@ void showAll()
         Console.WriteLine($"{i + 1}:StudentName:{students[i]} || Score:{studentsScore[i]}.");
     }
     Console.WriteLine("-------------------------");
-    
 
-    
+
+
 
 }
 void menu()

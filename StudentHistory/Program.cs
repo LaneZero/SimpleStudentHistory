@@ -23,9 +23,11 @@ while (!isExit)
             break;
         case 2:
             showAll();
+            Console.WriteLine("press any key back to menu...");
+            Console.ReadLine();
             break;
         case 3:
-            Console.WriteLine("3");
+            showAvrageScoreAllStudents();
             break;
         case 4:
             Console.WriteLine("4");
@@ -45,7 +47,33 @@ while (!isExit)
 
 }
 
+void showAvrageScoreAllStudents()
+{
+    if (students.Count < 1)
+    {
+        Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
+        Console.WriteLine("list is empty press any key back to menu...");
+        Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
+        Console.ReadLine();
+        return;
+    }
+    int avrageScore = 0;
+    int sumScore = 0;
 
+    showAll();
+    for (int i = 0; i < studentsScore.Count; i++)
+    {
+        sumScore += studentsScore[i];
+    }
+
+    avrageScore=(sumScore/studentsScore.Count);
+
+    Console.WriteLine("----------------------------");
+    Console.Write($"The Avrage Score is:{avrageScore}\n");
+    Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxx");
+    Console.ReadLine();
+
+}
 
 void addStudentsInfo()
 {
@@ -110,9 +138,9 @@ void showAll()
         Console.WriteLine($"{i + 1}:StudentName:{students[i]} || Score:{studentsScore[i]}.");
     }
     Console.WriteLine("-------------------------");
-    Console.WriteLine("press any key back to menu...");
+    
 
-    Console.ReadLine();
+    
 
 }
 void menu()
